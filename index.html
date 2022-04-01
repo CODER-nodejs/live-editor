@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+    <title>Strazimir's IDE</title>
+</head>
+
+<body>
+    <div class="style">
+        <iframe id="iframe"></iframe>
+    </div>
+    
+
+
+        <div class="code" id="code" name="code"></div>
+    
+</body>
+<script>
+
+require.config({ paths: { vs: '../node_modules/monaco-editor/min/vs' } });
+
+			require(['vs/editor/editor.main'], function () {
+				var editor = monaco.editor.create(document.getElementById('code'), {
+					value: ['<!DOCTYPE HTML>', '<html>', '', '<style>', '\tbody {', '\t\tbackground-color: white;', '\t}', '</style>', '</html>'].join('\n'),
+					language: 'html',
+                    theme: 'vs-dark'
+				});
+
+
+
+                var code = document.getElementById("code");
+
+                var iframe = document.querySelector("iframe");
+
+                
+
+                window.onload=function(){
+                    code.addEventListener("keyup", () => {
+                        var value = editor.getValue()
+                        iframe.src = `data:text/html,${value}`;
+                    })
+                }
+			})
+
+
+
+</script>
+</html>
