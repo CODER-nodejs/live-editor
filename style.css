@@ -6,7 +6,8 @@ body {
 
 iframe {
   float:left;
-  /* background-color: white; */
+  color-scheme: light;
+  background-color: white;
   border-style: solid;
   width: 780px;
   height: 540px;
